@@ -36,6 +36,19 @@ router.get('/cpf/:cpf', async (req, res) => {
     }
 });
 
+router.get('/id/:id', async (req, res) => {
+    try {
+        const pessoa = await Pessoa.findOne({ where: { id: req.params.id } });
+        if (!pessoa) {
+            res.status(404).json({ message: 'Pessoa não encontrada' });
+            return;
+        }
+        res.json(pessoa);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // Rota para atualizar uma pessoa
 router.put('/:id', async (req, res) => {
     try {
