@@ -5,7 +5,7 @@ const Pessoa = sequelize.define('Pessoa', {
     nome: Sequelize.STRING,
     email: Sequelize.STRING,
     telefone: Sequelize.STRING,
-    dataNascimento: Sequelize.DATE,
+    dataNascimento: Sequelize.STRING,
     cpf: {
         type: Sequelize.STRING,
         unique: true // Garante que o CPF seja único

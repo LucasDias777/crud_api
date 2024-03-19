@@ -49,6 +49,19 @@ router.get('/id/:id', async (req, res) => {
     }
 });
 
+    router.delete('/cpf/:cpf', async (req, res) => {
+        try {
+            const pessoa = await Pessoa.destroy({ where: { cpf: req.params.cpf } });
+            if (!pessoa) {
+                res.status(404).json({ message: 'Pessoa não encontrada' });
+                return;
+            }
+            res.json(pessoa);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+});
+
 // Rota para atualizar uma pessoa
 router.put('/:id', async (req, res) => {
     try {
